@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnFlow - Dynamic Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="brand-info">
+                        <h1>LearnFlow</h1>
+                        <p>Dynamic Learning Platform</p>
+                    </div>
+                </div>
+                <div class="user-section">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge"></span>
+                    </button>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <div class="user-profile">
+                        <div class="avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span>User</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="study-time">4h </h3>
+                        <p>Study Time Today</p>
+                        <small>2h 15m above average</small>
+                    </div>
+                    <div class="stat-trend">+18%</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="topics-completed">12</h3>
+                        <p>Topics Completed</p>
+                        <small>3 topics ahead of schedule</small>
+                    </div>
+                    <div class="stat-trend">+25%</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="focus-score">87%</h3>
+                        <p>Focus Score</p>
+                        <small>Excellent concentration level</small>
+                    </div>
+                    <div class="stat-trend">+12%</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Advanced</h3>
+                        <p>Mastery Level</p>
+                        <small>Ready for complex topics</small>
+                    </div>
+                </div>
+            </section>
+
+            <div class="main-grid">
+                <div class="left-column">
+                    <section class="card topic-recommendations">
+                        <div class="card-header">
+                            <div>
+                                <h2>AI Topic Recommendations</h2>
+                                <p>Personalized suggestions based on your learning pattern</p>
+                            </div>
+                            <div class="ai-badge">
+                                <i class="fas fa-brain"></i>
+                                <span>AI Powered</span>
+                            </div>
+                        </div>
+                        <div class="recommendations-list" id="recommendations-list">
+                            </div>
+                        <div class="card-footer">
+                            <span>Recommendations update every 15 minutes</span>
+                            <button class="refresh-btn" onclick="refreshRecommendations()">
+                                Refresh Suggestions
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="card learning-flow">
+                        <div class="card-header">
+                            <div>
+                                <h2>Learning Flow Path</h2>
+                                <p>Your personalized learning journey</p>
+                            </div>
+                            <div class="flow-legend">
+                                <div class="legend-item">
+                                    <i class="fas fa-check-circle completed"></i>
+                                    <span>Completed</span>
+                                </div>
+                                <div class="legend-item">
+                                    <i class="fas fa-play-circle current"></i>
+                                    <span>Current</span>
+                                </div>
+                                <div class="legend-item">
+                                    <i class="far fa-circle upcoming"></i>
+                                    <span>Upcoming</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flow-chart" id="flow-chart">
+                            </div>
+                        <div class="flow-summary">
+                            <div class="summary-item">
+                                <div class="summary-number completed">3</div>
+                                <div class="summary-label">Completed</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-number current">1</div>
+                                <div class="summary-label">Current</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-number upcoming">4</div>
+                                <div class="summary-label">Remaining</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="right-column">
+                    <section class="card fatigue-monitor">
+                        <div class="card-header">
+                            <h2>Fatigue Monitor</h2>
+                        </div>
+                        <div class="fatigue-content">
+                            <div class="fatigue-status">
+                                <span>Current State:</span>
+                                <span id="fatigue-state" class="state-optimal">Optimal</span>
+                            </div>
+                            <div class="fatigue-bar-container">
+                                <div id="fatigue-progress" class="fatigue-progress optimal" style="width: 25%;"></div>
+                            </div>
+                            <div class="fatigue-message-section">
+                                <div id="fatigue-icon" class="fatigue-icon optimal">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <p id="fatigue-message">Perfect focus level - continue learning</p>
+                            </div>
+                            <button id="fatigue-action" class="action-btn optimal">Keep going!</button>
+                        </div>
+                    </section>
+
+                    <section class="card session-logger">
+                        <div class="card-header">
+                            <h2>Session Logger</h2>
+                        </div>
+                        <div class="session-content">
+                            <div id="active-session" class="active-session" style="display: none;">
+                                <div class="session-details">
+                                    <h4 id="current-topic">Loading...</h4>
+                                    <div class="session-meta">
+                                        <span id="session-status" class="session-status recording">Recording</span>
+                                        <span>Start: <span id="start-time"></span></span>
+                                    </div>
+                                </div>
+                                <div class="session-timer-controls">
+                                    <div id="timer" class="session-timer">00:00</div>
+                                    <div class="controls">
+                                        <button id="pause-btn" class="control-btn pause" onclick="pauseSession()">
+                                            <i class="fas fa-pause"></i>
+                                            <span>Pause</span>
+                                        </button>
+                                        <button id="stop-btn" class="control-btn stop">
+                                            <i class="fas fa-square"></i>
+                                            <span>Stop</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="no-session" class="no-session">
+                                <div class="no-session-icon">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <h4>No Active Session</h4>
+                                <p>Start tracking your learning time</p>
+                                <button id="start-session-btn" class="start-btn">Start Session</button>
+                            </div>
+
+                            <div class="recent-sessions">
+                                <h4>Recent Sessions</h4>
+                                <div id="recent-sessions-list">
+                                    </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="card mastery-dashboard">
+                        <div class="card-header">
+                            <div>
+                                <h2>📊 Mastery & Skill Gaps</h2>
+                                <p>Data-driven view of your skills</p>
+                            </div>
+                            <span class="view-all-btn">Detailed Report <i class="fas fa-external-link-alt"></i></span>
+                        </div>
+                        <div class="panel-content">
+                            <div id="mastery-summary" class="mastery-summary">
+                                </div>
+                            <div id="skill-gaps-list" class="skill-gaps-list">
+                                </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
